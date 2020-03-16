@@ -10,7 +10,6 @@ phases:
     commands:
       # For e2e tests
       - sed -i -e 's/^CONFIG_BACKEND_URL=.*$/CONFIG_BACKEND_URL=https:\/\/api.rudderlabs.com/' build/docker.env
-      - sed -i -e 's/^CONFIG_BACKEND_TOKEN=.*$/CONFIG_BACKEND_TOKEN=1YNNXBsaqkZv59y85OvoG263gdM/' build/docker.env
       - go run tests/helpers/tomlmerge/toml_merge.go config/config.toml tests/e2e/config_overrides.toml > tests/e2e/config.toml
       - sed -i -e 's/^CONFIG_PATH=.*$/CONFIG_PATH=\/app\/tests\/e2e\/config.toml/' build/docker.env
       - docker-compose -f build/docker-compose.codebuild.yml up -d
